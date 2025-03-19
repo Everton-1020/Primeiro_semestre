@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 3</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        #resultado {
+            margin-top: 20px;
+            border: 1px solid #000;
+            padding: 10px;
+            background-color: #f0f0f0;
+        }
+    </style>
+</head>
+<body>
+
+    <form id="formulario">
+        <input type="text" id="texto" placeholder="Digite uma palavra ou frase" required>
+        <button type="button" id="maiuscula">Maiúscula</button>
+        <button type="button" id="separar">Separar</button>
+    </form>
+
+    <div id="resultado"></div>
+
+    <script>
+        document.getElementById('maiuscula').onclick = function() {
+            const texto = document.getElementById('texto').value;
+            document.querySelector("#resultado").innerHTML = texto.toUpperCase();
+        };
+
+        document.getElementById('separar').onclick = function() {
+            const texto = document.getElementById('texto').value;
+            const palavras = texto.split(' ').join('<br>');
+            document.querySelector("#resultado").innerHTML = palavras;
+        };
+    </script>
+
+</body>
+</html>
