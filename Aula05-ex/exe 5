@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 5</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .tabs {
+            display: flex;
+            cursor: pointer;
+            margin-bottom: 20px;
+        }
+        .tab {
+            padding: 10px 20px;
+            background: #f70303;
+            border: 1px solid #000000;
+            margin-right: 5px;
+        }
+        .tab.active {
+            background: #f8db21;
+        }
+        .content {
+            border: 1px solid #aaa;
+            padding: 20px;
+            display: none;
+            background-color: red;
+        }
+        .content.active {
+            display: block;
+        }
+        #slideshow {
+            position: relative;
+            max-width: 400px;
+            margin: auto;
+        }
+        #slideshow img {
+            width: 100%;
+            display: none;
+        }
+        #slideshow img.active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+<div class="tabs">
+    <div class="tab active" onclick="showTab('tab1')">Cronômetro</div>
+    <div class="tab" onclick="showTab('tab2')">Slideshow</div>
+    <div class="tab" onclick="showTab('tab3')">Tabuada</div>
+</div>
+
+<div id="tab1" class="content active">
+    <h2>Cronômetro</h2>
+    <div id="timer">0</div>
+</div>
+
+<div id="tab2" class="content">
+    <h2>Slideshow</h2>
+    <div id="slideshow">
+        <img src="red dead.jpg" class="active">
+        <img src="red dead1.jpg">
+        <img src="red dead 3.jpg">
+        <img src="red dead 4.jpg">
+        <img src="red dead 5.jpg">
+    </div>
+    <button onclick="changeSlide(-1)">Anterior</button>
+    <button onclick="changeSlide(1)">Próximo</button>
+</div>
+
+<div id="tab3" class="content">
+    <h2>Tabuada</h2>
+    <input type="number" id="numberInput" placeholder="Digite um número">
+    <button onclick="calculateTable()">Calcular Tabuada</button>
+    <div id="result"></div>
+</div>
+
+<script>
+    let seconds = 0;
+    setInterval(() => {
+        seconds++;
+        document.getElementById('timer').innerText = seconds;
+    }, 1000);
+
+    // Slideshow
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('#slideshow img');
+
+    function changeSlide(direction) {
+        slides[currentSlide].classList.remove('active');
+        currentSlide = (currentSlide + direction + slides.length) % slides.length;
+        slides[currentSlide].classList.add('active');
+    }
+
+    // Abas
+    function showTab(tabId) {
+        document.querySelectorAll('.content').forEach(tab => {
+            tab.classList.remove('active');
+        });
+        document.getElementById(tabId).classList.add('active');
+
+        document.querySelectorAll('.tab').forEach(tab => {
+            tab.classList.remove('active');
+        });
+        document.querySelector(`.tab[onclick="showTab('${tabId}')"]`).classList.add('active');
+    }
+
+    // Tabuada
+    function calculateTable() {
+        const number = parseInt(document.getElementById('numberInput').value);
+        const resultDiv = document.getElementById('result');
+        resultDiv.innerHTML = '';
+        if (!isNaN(number)) {
+            for (let i = 1; i <= 10; i++) {
+                resultDiv.innerHTML += `${number} x ${i} = ${number * i}<br>`;
+            }
+        } else {
+            resultDiv.innerHTML = 'Por favor, insira um número válido.';
+        }
+    }
+</script>
+
+</body>
+</html>
