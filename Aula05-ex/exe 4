@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 4</title>
+    <link rel="stylesheet" href="exe4.css">
+    <style>
+   body {
+            font-family: Arial, sans-serif;
+            background-color: #067ef5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .calculadora {
+            background: rgb(252, 250, 250);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        
+        }
+
+        .display {
+            width: 100%;
+            height: 40px;
+            text-align: right;
+            font-size: 24px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 5px;
+            box-sizing: border-box;
+        }
+
+        .botao {
+            width: 70px;
+            height: 70px;
+            margin: 5px;
+            font-size: 24px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: white;
+            transition: background-color 0.3s;
+        }
+
+        .botao:hover {
+            background-color: #0056b3;
+        }
+
+        .linha {
+            display: flex;
+            justify-content: center;
+        }
+        .caixa{
+            width: 175px;
+            height: 155px;
+            background-color: black;
+            border: 1px white;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="caixa">
+    <div id="calculadora">
+        <input type="text" id="resultado" placeholder="0" disabled>
+        <br>
+        <button onclick="adicionarValor('7')">7</button>
+        <button onclick="adicionarValor('8')">8</button>
+        <button onclick="adicionarValor('9')">9</button>
+        <button onclick="adicionarValor('/')">/</button>
+        <br>
+        <button onclick="adicionarValor('4')">4</button>
+        <button onclick="adicionarValor('5')">5</button>
+        <button onclick="adicionarValor('6')">6</button>
+        <button onclick="adicionarValor('*')">*</button>
+        <br>
+        <button onclick="adicionarValor('1')">1</button>
+        <button onclick="adicionarValor('2')">2</button>
+        <button onclick="adicionarValor('3')">3</button>
+        <button onclick="adicionarValor('-')">-</button>
+        <br>
+        <button onclick="adicionarValor('0')">0</button>
+        <button onclick="calcular()">=</button>
+        <button onclick="adicionarValor('+')">+</button>
+        <button onclick="potencia()">x^y</button>
+        <br>
+        <button onclick="arredondar()">Arredondar</button>
+        <button onclick="raizQuadrada()">Raiz Quadrada</button>
+        <button onclick="limpar()">C</button>
+    </div>
+        </div>
+    </div>
+
+    <script>
+        function adicionarValor(valor) {
+            const resultado = document.getElementById('resultado');
+            if (resultado.value === '0') {
+                resultado.value = valor;
+            } else {
+                resultado.value += valor;
+            }
+        }
+
+        function calcular() {
+            const resultado = document.getElementById('resultado');
+            try {
+                resultado.value = eval(resultado.value);
+            } catch {
+                resultado.value = 'Erro';
+            }
+        }
+
+        function potencia() {
+            const x = parseFloat(prompt("Digite a base (x):"));
+            const y = parseFloat(prompt("Digite o expoente (y):"));
+            if (!isNaN(x) && !isNaN(y)) {
+                const resultado = Math.pow(x, y);
+                document.getElementById('resultado').value = resultado;
+            } else {
+                alert("Por favor, insira números válidos.");
+            }
+        }
+
+        function arredondar() {
+            const x = parseFloat(prompt("Digite um número para arredondar:"));
+            if (!isNaN(x)) {
+                const resultado = Math.round(x);
+                document.getElementById('resultado').value = resultado;
+            } else {
+                alert("Por favor, insira um número válido.");
+            }
+        }
+
+        function raizQuadrada() {
+            const x = parseFloat(prompt("Digite um número para calcular a raiz quadrada:"));
+            if (!isNaN(x) && x >= 0) {
+                const resultado = Math.sqrt(x);
+                document.getElementById('resultado').value = resultado;
+            } else {
+                alert("Por favor, insira um número válido (não negativo).");
+            }
+        }
+
+        function limpar() {
+            document.getElementById('resultado').value = '0';
+        }
+    </script>
+
+</body>
+</html>
