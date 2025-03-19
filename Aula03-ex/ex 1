@@ -1,0 +1,67 @@
+html:
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício1</title>
+    <link rel="stylesheet" href="exe1.css">
+</head>
+<body>
+    <form id="meuForm" name="meuForm">
+        <label for="valor 1">Valor 1:</label>
+        <input type="text" id="valor 1" name="valor 1"><br><br>
+
+        <label for="valor 2">Valor 2:</label>
+        <input type="valor 2" id="valor 2" name="valor 2"><br><br>
+
+        <label>Opções:</label><br>
+        <input type="radio" id="soma" name="opcoes" value="soma">
+        <label for="soma">Soma</label><br>
+        <input type="radio" id="subtracao" name="opcoes" value="subtracao">
+        <label for="subtracao">Subtração</label><br>
+        <input type="radio" id="multiplicacao" name="opcoes" value="multiplicacao">
+        <label for="multipilcacao">Multiplicação</label><br>
+        <input type="radio" id="divisao" name="opcoes" value="divisao">
+        <label for="divisao">Divisão</label><br><br>
+
+        <label for="resultado">Resultado:</label>
+        <input type="text" id="resultado" name="resultado"><br><br>
+
+        <button type="button">Calcular</button>
+    </form>
+</body>
+</html>
+
+css:
+
+body {
+    font-family: Verdana, sans-serif;
+    font-size: 18pt;
+}
+
+form {
+    border: double 22px red;
+    width: 400px;
+    padding: 30px;
+}
+
+input[type="text"],
+input[type="valor 1"] {
+    font-size: 18pt;
+    border: 1px solid black;
+    width: calc(70% - 22px); /* Ajusta a largura para o padding */
+    padding: 5px;
+    margin-top: 5px;
+    background-color: yellow;
+}
+input[type="text"],
+input[type="valor 2"] {
+    font-size: 18pt;
+    border: 1px solid black;
+    width: calc(70% - 22px); /* Ajusta a largura para o padding */
+    padding: 5px;
+    margin-top: 5px;
+    background-color: yellow;
+}
