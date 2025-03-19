@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 1</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        form {
+            background: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        button {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            background-color: #143d02;
+            color: white;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #5a8942;
+        }
+        #resultado {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Cálculo de Parcelas</h2>
+<form id="formulario">
+    <label for="valorCompra">Valor Total da Compra:</label>
+    <input type="number" id="valorCompra" required>
+
+    <label for="quantidadeParcelas">Quantidade de Parcelas:</label>
+    <input type="number" id="quantidadeParcelas" required>
+
+    <button type="button" onclick="calcularParcelas()">Calcular Parcelas</button>
+</form>
+
+<div id="resultado"></div>
+
+<script>
+    function calcularParcelas() {
+        const valorCompra = parseFloat(document.getElementById('valorCompra').value);
+        const quantidadeParcelas = parseInt(document.getElementById('quantidadeParcelas').value);
+        
+        let juros = 0;
+
+        if (quantidadeParcelas >= 1 && quantidadeParcelas <= 3) {
+            juros = 0;
+        } else if (quantidadeParcelas >= 4 && quantidadeParcelas <= 6) {
+            juros = 0.05;
+        } else if (quantidadeParcelas >= 7) {
+            juros = 0.10;
+        } else {
+            document.getElementById('resultado').innerText = 'Quantidade de parcelas inválida.';
+            return;
+        }
+
+        const valorTotalComJuros = valorCompra * (1 + juros);
+        const valorParcela = valorTotalComJuros / quantidadeParcelas;
+
+        document.getElementById('resultado').innerText = 
+            `Valor de cada parcela: R$ ${valorParcela.toFixed(2)}`;
+    }
+</script>
+
+</body>
+</html>
