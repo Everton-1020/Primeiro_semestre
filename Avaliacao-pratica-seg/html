@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prova</title>
+    <style>
+        .masculino {
+            color: green;
+        }
+        .feminino {
+            color: orange;
+        }
+    </style>
+</head>
+<body>
+    <h1>Dados das Pessoas</h1>
+    <button onclick="listarPessoas()">Listar Pessoas</button>
+    <button onclick="calcularDados()">Calcular Dados</button>
+    <div id="output"></div>
+
+    <script src="pessoas.js"></script>
+    <script>
+        function listarPessoas() {
+            const outputDiv = document.getElementById('output');
+            outputDiv.innerHTML = '';
+
+            pessoas.forEach(pessoa => {
+                const { nome, salario, profissao, idade, altura, peso, genero, foto } = pessoa;
+                const corGenero = genero === "Masculino" ? "masculino" : "feminino";
+
+                outputDiv.innerHTML += `
+                    <div class="${corGenero}">
+                        <h2>${nome}</h2>
+                        <p>Salário: R$ ${salario.toFixed(2)}</p>
+                        <p>Profissão: ${profissao}</p>
+                        <p>Idade: ${idade}</p>
+                        <p>Altura: ${altura} m</p>
+                        <p>Peso: ${peso} kg</p>
+                        <p>Gênero: ${genero}</p>
+                        <img src="${foto}" alt="${nome}" />
+                    </div>
+                    <hr />
+                `;
+            });
+        }
+
+        function calcularDados() {
+            const idadeTotal = pessoas.reduce((total, pessoa) => total + pessoa.idade, 0);
+            const mediaIdade = idadeTotal / pessoas.length;
+
+            const homemMaisVelho = pessoas.filter(p => p.genero === "Masculino").reduce((prev, curr) => prev.idade > curr.idade ? prev : curr);
+            const maiorSalario = pessoas.reduce((prev, curr) => prev.salario > curr.salario ? prev : curr);
+
+            const outputDiv = document.getElementById('output');
+            outputDiv.innerHTML = `
+                <h2>Média das Idades: ${mediaIdade.toFixed(2)}</h2>
+                <h3>Homem Mais Velho</h3>
+                <p>Nome: ${homemMaisVelho.nome}</p>
+                <p>Idade: ${homemMaisVelho.idade}</p>
+                <p>Profissão: ${homemMaisVelho.profissao}</p>
+                <img src="${homemMaisVelho.foto}" alt="${homemMaisVelho.nome}" />
+                <h3>Maior Salário</h3>
+                <p>Nome: ${maiorSalario.nome}</p>
+                <p>Salário: R$ ${maiorSalario.salario.toFixed(2)}</p>
+                <p>Idade: ${maiorSalario.idade}</p>
+                <p>Profissão: ${maiorSalario.profissao}</p>
+                <img src="${maiorSalario.foto}" alt="${maiorSalario.nome}" />
+            `;
+        }
+    </script>
+</body>
+</html>
