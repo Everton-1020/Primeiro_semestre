@@ -1,0 +1,30 @@
+html:
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício2</title>
+    <link rel="stylesheet" href="exe2.css">
+</head>
+<body>
+    <script>
+        document.body.innerHTML +=`<div class="meunome">Seu Nome</div>`;
+    </script>
+</body>
+</html>
+
+
+css:
+
+.meunome {
+    font-family: Verdana;
+    font-size: 50pt;
+    background-color: black;
+    border-radius: 130px;
+    width: 500px;
+    color: white;
+    text-align: center;
+    padding: 20px; 
+}
