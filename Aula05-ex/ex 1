@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 1</title>
+    <style>
+        body {
+            background-color: #CCCCCC;
+            font-family: Arial, sans-serif;
+        }
+        table {
+            width: 50%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            background-color: #CCCCCC;
+        }
+        th {
+            font-size: 15px;
+            font-weight: 700;
+            background-color: #000033;
+            color: #CCCCCC;
+            padding: 10px;
+        }
+        td {
+            font-size: 14px;
+            background-color: #000066;
+            color: #CCCCCC;
+            padding: 10px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <script>
+        let nomes = [];
+        let index = 1;
+
+        while (true) {
+            let nome = prompt("Digite um nome (ou cancele para terminar):");
+            if (nome === null) {
+                break;
+            }
+            nomes.push(nome);
+        }
+
+        if (nomes.length > 0) {
+            document.write("<table border='1'>");
+            document.write("<tr><th>Índice</th><th>Nome</th></tr>");
+            nomes.forEach(nome => {
+                document.write(`<tr><td>${index++}</td><td>${nome}</td></tr>`);
+            });
+            document.write("</table>");
+        } else {
+            document.write("<p>Nenhum nome foi inserido.</p>");
+        }
+    </script>
+
+</body>
+</html>
