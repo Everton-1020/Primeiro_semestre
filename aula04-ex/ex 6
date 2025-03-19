@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Exercício 6</title>
+    <script>
+        function calcularPagamento() {
+            const preco = parseFloat(document.getElementById('preco').value);
+            const condicao = parseInt(document.getElementById('condicao').value);
+            let valorFinal;
+
+            switch (condicao) {
+                case 1:
+                    valorFinal = preco * 0.9; 
+                    break;
+                case 2:
+                    valorFinal = preco * 0.95; 
+                    break;
+                case 3:
+                    valorFinal = preco * 1.1; 
+                    break;
+                default:
+                    valorFinal = preco; 
+            }
+
+            document.getElementById('resultado').innerText = `Valor a ser pago: R$ ${valorFinal.toFixed(2)}`;
+        }
+    </script>
+</head>
+<body>
+    <h1>Cálculo de Pagamento de Produto</h1>
+    
+    <input type="text" id="preco" placeholder="Preço do Produto">
+    <select id="condicao">
+        <option value="1">À vista (10% desconto)</option>
+        <option value="2">Cartão (5% desconto)</option>
+        <option value="3">Parcelado (10% aumento)</option>
+    </select>
+    <button onclick="calcularPagamento()">Calcular Valor</button>
+    <p id="resultado"></p>
+</body>
+</html>
