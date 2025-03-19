@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 12</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+        .resultado {
+            margin-top: 20px;
+            font-size: 20pt;
+            color: rgb(0, 0, 0);
+        }
+    </style>
+</head>
+<body>
+    <h1>Jogo de Adivinhação</h1>
+    <form id="adivinhacaoForm">
+        <label for="palpite">Chute um número (0 a 100):</label>
+        <input type="number" id="palpite" min="0" max="100" required>
+        <button type="button" onclick="adivinhar()">Enviar Palpite</button>
+    </form>
+
+    <div id="resultado" class="resultado"></div>
+
+    <script>
+        let num;
+        let tentativas;
+
+        function iniciarJogo() {
+            num = Math.round(Math.random() * 100);
+            tentativas = 0;
+            document.getElementById('resultado').innerHTML = "Tente adivinhar o número!";
+        }
+
+        function adivinhar() {
+            const palpite = parseInt(document.getElementById('palpite').value);
+            tentativas++;
+
+            if (palpite < num) {
+                document.getElementById('resultado').innerHTML = "O número é maior. Tentativas: " + tentativas;
+            } else if (palpite > num) {
+                document.getElementById('resultado').innerHTML = "O número é menor. Tentativas: " + tentativas;
+            } else {
+                document.getElementById('resultado').innerHTML = "Parabéns! Você acertou o número " + num + " em " + tentativas + " tentativas.";
+                perguntarNovamente();
+            }
+        }
+
+        function perguntarNovamente() {
+            const jogarNovamente = confirm("Deseja jogar novamente?");
+            if (jogarNovamente) {
+                iniciarJogo();
+            } else {
+                document.getElementById('resultado').innerHTML = "Obrigado por jogar!";
+            }
+        }
+
+        window.onload = iniciarJogo;
+    </script>
+</body>
+</html>
